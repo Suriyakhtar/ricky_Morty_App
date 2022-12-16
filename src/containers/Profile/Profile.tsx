@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { setCharacterLoading, setError, setRecentlyVisitedProfiles, setSingleCharacter } from "../../store/character.reducer";
 import { RootState } from "../../store/store";
 import { Character } from "../../types/Character";
+import { BASE_URL } from "../../utils";
 
 
 const Profile: FC = () => {
@@ -22,7 +23,7 @@ const Profile: FC = () => {
   const fetchCharacter = (charId: string | undefined) => {
     dispatch(setCharacterLoading(true))
     axios
-      .get<Character>(`https://rickandmortyapi.com/api/character/${charId}`)
+      .get<Character>(`${BASE_URL}/${charId}`)
       .then((response) => {
         dispatch(
           setSingleCharacter(response.data)
@@ -56,8 +57,7 @@ const Profile: FC = () => {
 
   useEffect(() => {
     fetchCharacter(id)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [id])
 
   return (
     <MainLayout>

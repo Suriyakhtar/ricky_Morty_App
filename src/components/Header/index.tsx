@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from "react"
 import { Col, Row, Input, AutoComplete } from 'antd';
 import type { SelectProps } from 'antd/es/select';
-
 import {
     Link,
     useNavigate
@@ -44,12 +43,12 @@ export const Header: FC = () => {
     const query = useQuery()
 
     const handleSearch = (value: string) => {
+        value === "" && navigate(`/`)
         const keyword = value.toLowerCase();
         const filteredChars = charNames.filter(function (user) {
             user = user.toLowerCase();
             return user.indexOf(keyword) > -1;
         });
-        console.log(filteredChars, "filteredChars")
         setOptions(value ? searchResult(filteredChars) : []);
     }
     useEffect(() => {
@@ -76,7 +75,6 @@ export const Header: FC = () => {
                         }}
                     >
                         <Search
-
                             placeholder="Search Character..."
                             value={searchInput}
                             enterButton
