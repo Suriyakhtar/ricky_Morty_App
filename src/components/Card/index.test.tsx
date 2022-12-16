@@ -1,4 +1,4 @@
-import { render, screen, cleanup } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import '@testing-library/jest-dom'
 import { MemoryRouter as Router } from 'react-router-dom';
 import { Card } from "./index"
@@ -20,7 +20,6 @@ export default global.matchMedia =
     };
 
 test('Should be render component', async () => {
-
     await render(
         <Router>
             <Card name={"jerry"} status={"Alive"} id={0} image={"src"} />
@@ -28,5 +27,4 @@ test('Should be render component', async () => {
     )
     const card = screen.getByTestId('card-test');
     expect(card).toBeInTheDocument();
-
 })
