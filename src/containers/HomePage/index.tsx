@@ -65,7 +65,7 @@ const HomePage: FC = () => {
 					<>
 						<Row justify="center" gutter={[8, 24]}>
 							{characters?.map((item) => (
-								<Col key={item.id} span={24} md={4}>
+								<Col key={item.id} span={24} md={8} xxl={4}>
 									<Card {...item} />
 								</Col>
 							))}

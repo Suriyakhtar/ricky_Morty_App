@@ -1,8 +1,9 @@
 import styled from "styled-components";
 export const Wrapper = styled.div`
   .ant-layout-header {
-    height: 60px;
-    padding-inline: 15px;
+    height: unset;
+    min-height: 60px;
+    padding: 15px;
     line-height: 40px;
   }
   .ant-typography {
@@ -13,9 +14,9 @@ export const Wrapper = styled.div`
   }
 
   .ant-divider-horizontal {
-    width: 87%;
+    width: 80%;
     min-width: 50%;
-    margin: 25px 106px;
+    margin: 25px auto;
   }
   .ant-pagination {
     margin: 25px auto;
