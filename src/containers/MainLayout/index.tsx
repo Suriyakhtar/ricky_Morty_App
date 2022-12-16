@@ -1,11 +1,11 @@
 import { FC } from "react";
 import { Divider, Layout } from "antd";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import { Header, Footer } from "../../components";
 import Wrapper from "./styles";
+
 const { Header: ANtHeader, Content, Footer: AntFooter } = Layout;
 interface CustomLayout {
-    children: any;
+    children: React.ReactNode;
 }
 
 const MainLayout: FC<CustomLayout> = ({ children }) => {

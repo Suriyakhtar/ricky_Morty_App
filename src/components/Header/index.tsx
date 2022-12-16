@@ -8,31 +8,34 @@ import {
 } from "react-router-dom"
 import Wrapper from './styles';
 import { useQuery } from "../../containers/HomePage";
-import Heading from "../Heading";
+import { Heading } from "../index";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 
 const { Search } = Input;
 
-const searchResult = (query: any) =>
-    query.map((itm: any) => {
+const searchResult = (query: string[]) =>
+    query.map((item: string, index: number) => {
         return {
-            value: itm,
+            key: index + 2,
+            value: item,
             label: (
                 <div
+                    key={index}
                     style={{
                         display: 'flex',
                         justifyContent: 'space-between',
                     }}
                 >
                     <span>
-                        {itm}
+                        {item}
                     </span>
                 </div>
             ),
         };
     });
-const Header: FC = () => {
+
+export const Header: FC = () => {
     const navigate = useNavigate()
     const [searchInput, setSearchInput] = useState("")
     const [options, setOptions] = useState<SelectProps<object>['options']>([]);
@@ -46,6 +49,7 @@ const Header: FC = () => {
             user = user.toLowerCase();
             return user.indexOf(keyword) > -1;
         });
+        console.log(filteredChars, "filteredChars")
         setOptions(value ? searchResult(filteredChars) : []);
     }
     useEffect(() => {
@@ -72,6 +76,7 @@ const Header: FC = () => {
                         }}
                     >
                         <Search
+
                             placeholder="Search Character..."
                             value={searchInput}
                             enterButton
@@ -89,5 +94,3 @@ const Header: FC = () => {
         </Wrapper>
     )
 }
-
-export default Header

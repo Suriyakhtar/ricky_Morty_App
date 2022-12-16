@@ -1,22 +1,22 @@
-import React, { useEffect } from "react";
-import { Alert, Col, Row, Spin, Card as AntCard } from "antd";
-import Card from "../../components/Card";
-import Pagination from "../../components/Pagination";
-import MainLayout from "../MainLayout";
+import React, { useEffect, FC, useMemo } from "react";
+import { Alert, Col, Row, Spin } from "antd";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux"
-import { characterInitialState, setCharacter, setCharacterLoading, setError, setPagination } from "../../store/character.reducer";
-import { RootState } from "../../store/store";
-import { Character, CharacterApiPaginationInfo } from "../../types/Character";
 import { useLocation } from "react-router-dom";
-const { Meta } = AntCard;
+import { Pagination, Card } from "../../components";
+import MainLayout from "../MainLayout";
+import { Character, CharacterApiPaginationInfo } from "../../types/Character";
+import { RootState } from "../../store/store";
+import { characterInitialState, setCharacter, setCharacterLoading, setError, setPagination } from "../../store/character.reducer";
+
+
 export const useQuery = () => {
 	const { search } = useLocation();
 
-	return React.useMemo(() => new URLSearchParams(search), [search])
+	return useMemo(() => new URLSearchParams(search), [search])
 }
 
-const HomePage: React.FC = () => {
+const HomePage: FC = () => {
 	const dispatch = useDispatch();
 	const characters = useSelector((state: RootState) => state.character.character)
 	const loading = useSelector((state: RootState) => state.character.characterLoading)
@@ -64,10 +64,11 @@ const HomePage: React.FC = () => {
 	useEffect(() => {
 		dispatch(setCharacterLoading(true))
 		fetchCharacter();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [query]);
 
 	return (
-		<MainLayout>
+		<MainLayout data-testid="home-test-id">
 			{
 				loading ? <Spin size="large" /> : error ?
 					<Alert type="error" message={error} ></Alert> :

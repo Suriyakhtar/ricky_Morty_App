@@ -1,5 +1,6 @@
 import { Pagination as PaginationAnt } from 'antd';
 import type { PaginationProps } from 'antd';
+
 const itemRender: PaginationProps['itemRender'] = (_, type, originalElement) => {
     if (type === 'prev') {
         return <a>Previous</a>;
@@ -9,10 +10,10 @@ const itemRender: PaginationProps['itemRender'] = (_, type, originalElement) => 
     }
     return originalElement;
 }
-function Pagination(props: PaginationProps) {
+export function Pagination(props: PaginationProps) {
     return (
         <PaginationAnt {...props} itemRender={itemRender} />
     )
 }
 
-export default Pagination
+

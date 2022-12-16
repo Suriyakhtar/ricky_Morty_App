@@ -6,7 +6,7 @@ import Wrapper from './styles';
 import { PresetStatusColorType } from 'antd/es/_util/colors';
 const { Title } = Typography;
 
-const Card: FC<ICard> = ({ name, image, id, status }) => {
+export const Card: FC<ICard> = ({ name, image, id, status }) => {
 
 	let statusColor = {
 		'Alive': "success",
@@ -36,4 +36,3 @@ const Card: FC<ICard> = ({ name, image, id, status }) => {
 		</Wrapper>
 	)
 }
-export default Card

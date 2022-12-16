@@ -1,6 +1,12 @@
 import { Image as ImageAnt } from 'antd';
 
-const Image: React.FC<any> = ({ image, width, height }) => {
+interface IProps {
+    image: string | undefined
+    width: number | string
+    height: number | string
+}
+
+export const Image: React.FC<IProps> = ({ image, width, height }) => {
     return (
         <ImageAnt
             width={width}
@@ -9,5 +15,3 @@ const Image: React.FC<any> = ({ image, width, height }) => {
         />
     )
 }
-
-export default Image

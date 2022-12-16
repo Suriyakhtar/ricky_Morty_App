@@ -3,10 +3,8 @@ import MainLayout from "../MainLayout"
 import { Row, Col, Alert, Spin } from "antd"
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { useParams, Link } from "react-router-dom";
-import Image from "../../components/Image"
+import { Typography, Heading, Image } from "../../components"
 import axios from "axios";
-import Heading from "../../components/Heading";
-import Typography from "../../components/Typography";
 import { useDispatch, useSelector } from "react-redux"
 import { setCharacterLoading, setError, setRecentlyVisitedProfiles, setSingleCharacter } from "../../store/character.reducer";
 import { RootState } from "../../store/store";
@@ -58,6 +56,7 @@ const Profile: FC = () => {
 
   useEffect(() => {
     fetchCharacter(id)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
