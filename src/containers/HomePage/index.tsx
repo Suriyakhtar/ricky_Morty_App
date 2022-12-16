@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { useLocation } from "react-router-dom";
 import { Pagination, Card } from "../../components";
 import MainLayout from "../MainLayout";
-import { Character, CharacterApiPaginationInfo } from "../../types/Character";
 import { RootState } from "../../store/store";
 import { characterInitialState, setCharacter, setCharacterLoading, setError, setPagination } from "../../store/character.reducer";
+import { fetchChar } from "../../utils";
 
 
 export const useQuery = () => {
@@ -25,16 +25,7 @@ const HomePage: FC = () => {
 	const query = useQuery();
 
 	const fetchCharacter = (page = 1) => {
-		axios
-			.get<{
-				results: Character[]
-				info: CharacterApiPaginationInfo
-			}>("https://rickandmortyapi.com/api/character", {
-				params: {
-					page: page,
-					name: query.get("q")
-				},
-			})
+		fetchChar(page, query)
 			.then((response) => {
 				dispatch(
 					setCharacter(response.data.results)
@@ -64,7 +55,6 @@ const HomePage: FC = () => {
 	useEffect(() => {
 		dispatch(setCharacterLoading(true))
 		fetchCharacter();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [query]);
 
 	return (
