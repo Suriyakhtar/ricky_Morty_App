@@ -58,13 +58,13 @@ export const Header: FC = () => {
     return (
         <Wrapper>
             <Row>
-                <Col span={6} offset={1}>
+                <Col span={24} sm={14} offset={1} >
                     <Link to="/" >
                         <Heading level={4} title="Rick and Morty" /></Link>
                 </Col>
-                <Col span={8} offset={8}>
+                <Col span={24} sm={6} offset={1}>
                     <AutoComplete
-                        style={{ width: 650 }}
+                        style={{ width: "100%" }}
                         dropdownMatchSelectWidth={252}
                         options={options}
                         value={searchInput}
